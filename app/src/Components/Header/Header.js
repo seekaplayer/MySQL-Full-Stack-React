@@ -1,21 +1,7 @@
 import React from "react";
 import "./Header.css";
 const Header = () => {
-  return (
-    <div>
-      <nav>
-        <div className="nav-wrapper">
-          <div className="row">
-            <div className="col s12">
-              <a href="/" className="brand-logo">
-                MySQL Todo App
-              </a>
-            </div>
-          </div>
-        </div>
-      </nav>
-    </div>
-  );
+  return <div></div>;
 };
 
 export default Header;
