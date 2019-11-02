@@ -1,6 +1,6 @@
 import React from "react";
 
-function AddTodoFrom() {
+const AddTodoFrom = () => {
   return (
     <div className="row">
       <form className="col s12">
@@ -14,6 +14,6 @@ function AddTodoFrom() {
       </form>
     </div>
   );
-}
+};
 
 export default AddTodoFrom;

@@ -4,7 +4,7 @@ import "./App.css";
 import AddTodoForm from "../Components/AddTodoForm/AddTodoForm";
 import TodosList from "../Components/TodosList/TodosList";
 import Footer from "../Components/Footer/Footer";
-function App() {
+const App = () => {
   return (
     <div>
       <Header />
@@ -16,6 +16,6 @@ function App() {
       <Footer />
     </div>
   );
-}
+};
 
 export default App;

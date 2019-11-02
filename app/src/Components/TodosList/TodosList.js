@@ -1,6 +1,6 @@
 import React from "react";
 
-function TodosList() {
+const TodosList = () => {
   return (
     <div>
       <div className="row">
@@ -19,6 +19,6 @@ function TodosList() {
       </div>
     </div>
   );
-}
+};
 
 export default TodosList;
