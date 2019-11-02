@@ -1,16 +1,21 @@
 import React, { useState } from "react";
 
 const AddTodoFrom = ({ createTodoList }) => {
-  const [todo, setTodo] = useState("");
-  const createTodo = event => {
-    setTodo(event.target.value);
+  const [todo, setTodo] = useState();
+
+  const onChange = event => {
+    setTodo({ name: event.target.value });
+  };
+
+  const onSubmit = event => {
+    event.preventDefault();
     createTodoList(todo);
   };
   return (
-    <form>
+    <form onSubmit={onSubmit}>
       <div className="field">
         <div className="control">
-          <input className="input is-large" type="text" onChange={createTodo} />
+          <input className="input is-large" type="text" onChange={onChange} />
         </div>
       </div>
     </form>

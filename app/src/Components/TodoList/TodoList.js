@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import AddTodoForm from "../AddTodoForm/AddTodoForm";
 import "./TodoList.css";
 const TodosList = () => {
-  const [todoList, setTodoList] = useState([]);
+  const [todoList, setTodoList] = useState("");
+
   const createTodoList = todo => {
     setTodoList([...todoList, { id: 1, todo: todo, completed: false }]);
-    console.log(todoList);
   };
+  console.log(todoList);
   return (
     <div>
       <AddTodoForm createTodoList={createTodoList} />
