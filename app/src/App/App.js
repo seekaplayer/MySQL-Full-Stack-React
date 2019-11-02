@@ -1,4 +1,5 @@
 import React from "react";
+import "bulma/css/bulma.min.css";
 import Header from "../Components/Header/Header";
 import "./App.css";
 import AddTodoForm from "../Components/AddTodoForm/AddTodoForm";
@@ -8,8 +9,9 @@ const App = () => {
   return (
     <div>
       <Header />
-      <div className="spacing-top"></div>
+
       <div className="container">
+        test
         <AddTodoForm />
         <TodosList />
       </div>
