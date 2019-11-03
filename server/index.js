@@ -24,7 +24,6 @@ app.use(express.json());
 
 // MySQL Connection Starts
 connection.connect(err => {
-  // If there is any connection issues, an error will generate
   if (err) {
     console.warn(
       err,
@@ -32,15 +31,25 @@ connection.connect(err => {
     );
     throw err;
   }
-
-  // If you succeed with the connection you'll see a message
   console.log(
     `Connected to MySQL using ${connection.config.database} Database`
   );
 });
 
-// Insert todos into the database
+// Get todos from the Database
+app.get("/getTodosFromDb", (req, res) => {
+  connection.query("SELECT * FROM todos ORDER BY id ASC", (err, result) => {
+    if (err) {
+      res.status(500).json({
+        errorMessage: "Couldn't get data from the database"
+      });
+      throw err;
+    }
+    res.status(200).json({ result });
+  });
+});
 
+// Insert todos into the database
 app.post("/insertTodosIntoDb", (req, res) => {
   connection.query("INSERT INTO todos SET ?", req.body, (err, result) => {
     if (err) {
@@ -59,17 +68,29 @@ app.post("/insertTodosIntoDb", (req, res) => {
   });
 });
 
-// Get todos from the Database
-app.get("/getTodosFromDb", (req, res) => {
-  connection.query("SELECT * FROM todos ORDER BY id ASC", (err, result) => {
-    if (err) {
-      res.status(500).json({
-        errorMessage: "Couldn't get data from the database"
+// Delete Todos from the Database
+app.delete("/deleteTodoFromDb/:id", (req, res) => {
+  connection.query(
+    "DELETE FROM todos WHERE id=?",
+    req.params.id,
+    (err, result) => {
+      if (err) {
+        res.status(500).json({
+          errorMessage: "We couldn't Delete that Todo"
+        });
+        throw err;
+      }
+      connection.query("SELECT * FROM todos ORDER BY id ASC", (err, row) => {
+        if (err) {
+          res.status(500).json({
+            errorMessage: "Couldn't get data from the database"
+          });
+          throw err;
+        }
+        res.status(200).json({ row });
       });
-      throw err;
     }
-    res.status(200).json({ result });
-  });
+  );
 });
 
 // Starts the Express Server

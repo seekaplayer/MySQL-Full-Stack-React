@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 
 const AddTodoFrom = ({ createTodoList }) => {
-  const [todo, setTodo] = useState([]);
+  const [todo, setTodo] = useState({ name: "" });
 
   const onChange = event => {
+    event.preventDefault();
     setTodo({ name: event.target.value });
   };
 

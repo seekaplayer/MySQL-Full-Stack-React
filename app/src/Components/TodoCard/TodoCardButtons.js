@@ -1,8 +1,8 @@
 import React from "react";
 
-const TodoCardButtons = ({ todoItem }) => {
+const TodoCardButtons = ({ todoItem, deleteTodoFromList }) => {
   const deleteTodo = () => {
-    return <div></div>;
+    deleteTodoFromList(todoItem);
   };
   return (
     <footer className="card-footer">
@@ -32,7 +32,9 @@ const TodoCardButtons = ({ todoItem }) => {
             </button>
           </p>
           <p className="card-footer-item">
-            <button className="button is-danger">Delete</button>
+            <button onClick={deleteTodo} className="button is-danger">
+              Delete
+            </button>
           </p>
           <p className="card-footer-item">
             <button

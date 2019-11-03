@@ -1,7 +1,7 @@
 import React from "react";
 import TodoCardStatus from "./TodoStatus";
 import TodoCardButtons from "./TodoCardButtons";
-const TodoCard = ({ todoList }) => {
+const TodoCard = ({ todoList, deleteTodoFromList }) => {
   return (
     <div className="columns is-multiline todoListTopSpacing">
       {todoList.map((todoItem, key) => (
@@ -11,7 +11,10 @@ const TodoCard = ({ todoList }) => {
               <p className="subtitle">{todoItem.name}</p>
               <TodoCardStatus todoItem={todoItem} />
             </div>
-            <TodoCardButtons todoItem={todoItem} />
+            <TodoCardButtons
+              todoItem={todoItem}
+              deleteTodoFromList={deleteTodoFromList}
+            />
           </div>
         </div>
       ))}

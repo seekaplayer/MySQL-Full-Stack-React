@@ -17,6 +17,17 @@ const TodosList = () => {
     setTodoList([...todoList, ...json]);
   };
 
+  const deleteTodoFromList = async todoItem => {
+    const response = await fetch(
+      `http://localhost:3001/deleteTodoFromDb/${todoItem.id}`,
+      {
+        method: "DELETE"
+      }
+    );
+    const json = await response.json();
+    setTodoList(json.row);
+  };
+
   useEffect(() => {
     const getTodos = async () => {
       const response = await fetch("http://localhost:3001/getTodosFromDb");
@@ -25,10 +36,11 @@ const TodosList = () => {
     };
     getTodos();
   }, []);
+
   return (
     <div>
       <AddTodoForm createTodoList={createTodoList} />
-      <TodoCard todoList={todoList} />
+      <TodoCard todoList={todoList} deleteTodoFromList={deleteTodoFromList} />
     </div>
   );
 };
