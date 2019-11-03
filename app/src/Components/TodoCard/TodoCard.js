@@ -1,6 +1,6 @@
 import React from "react";
-
-const todoCard = ({ todoList }) => {
+import TodoCardStatus from "./TodoStatus";
+const TodoCard = ({ todoList }) => {
   return (
     <div className="columns is-multiline todoListTopSpacing">
       {todoList.map((todoItem, key) => (
@@ -8,12 +8,7 @@ const todoCard = ({ todoList }) => {
           <div className="card">
             <div className="card-content">
               <p className="subtitle">{todoItem.name}</p>
-              <div className="control">
-                <div className="tags has-addons">
-                  <span className="tag">Status</span>
-                  <span className="tag is-danger">{todoItem.status}</span>
-                </div>
-              </div>
+              <TodoCardStatus todoItem={todoItem} />
             </div>
             <footer className="card-footer">
               <p className="card-footer-item">
@@ -33,4 +28,4 @@ const todoCard = ({ todoList }) => {
   );
 };
 
-export default todoCard;
+export default TodoCard;
