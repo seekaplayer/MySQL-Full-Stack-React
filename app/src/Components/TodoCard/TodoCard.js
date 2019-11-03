@@ -1,5 +1,6 @@
 import React from "react";
 import TodoCardStatus from "./TodoStatus";
+import TodoCardButtons from "./TodoCardButtons";
 const TodoCard = ({ todoList }) => {
   return (
     <div className="columns is-multiline todoListTopSpacing">
@@ -10,17 +11,7 @@ const TodoCard = ({ todoList }) => {
               <p className="subtitle">{todoItem.name}</p>
               <TodoCardStatus todoItem={todoItem} />
             </div>
-            <footer className="card-footer">
-              <p className="card-footer-item">
-                <button className="button is-info">Edit</button>
-              </p>
-              <p className="card-footer-item">
-                <button className="button is-danger">Delete</button>
-              </p>
-              <p className="card-footer-item">
-                <button className="button is-success">Complete</button>
-              </p>
-            </footer>
+            <TodoCardButtons todoItem={todoItem} />
           </div>
         </div>
       ))}

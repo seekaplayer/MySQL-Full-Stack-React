@@ -1,5 +1,5 @@
 import React from "react";
-import TodosList from "../TodoList/TodoList";∂
+import TodosList from "../TodoList/TodoList";
 
 const TodoStatus = ({ todoItem }, status) => {
   if (todoItem.status === 0) {
