@@ -28,6 +28,23 @@ const TodosList = () => {
     setTodoList(json.row);
   };
 
+  const updateTodoStatusFromList = async todoItem => {
+    const response = await fetch(
+      `http://localhost:3001/updateTodoStatus/${todoItem.id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json"
+        }
+      }
+    );
+    const json = await response.json();
+
+    setTodoList(
+      todoList.map(todo => (todo.id === todoItem.id ? json[0] : todo))
+    );
+  };
+
   useEffect(() => {
     const getTodos = async () => {
       const response = await fetch("http://localhost:3001/getTodosFromDb");
@@ -40,7 +57,11 @@ const TodosList = () => {
   return (
     <div>
       <AddTodoForm createTodoList={createTodoList} />
-      <TodoCard todoList={todoList} deleteTodoFromList={deleteTodoFromList} />
+      <TodoCard
+        todoList={todoList}
+        deleteTodoFromList={deleteTodoFromList}
+        updateTodoStatusFromList={updateTodoStatusFromList}
+      />
     </div>
   );
 };

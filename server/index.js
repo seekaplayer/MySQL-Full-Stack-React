@@ -68,6 +68,29 @@ app.post("/insertTodosIntoDb", (req, res) => {
   });
 });
 
+// Updates the Status of the Todo
+app.put("/updateTodoStatus/:id", (req, res) => {
+  connection.query(
+    "UPDATE todos SET status = 1 WHERE id=?",
+    req.params.id,
+    (err, result) => {
+      if (err) {
+        res.status(500).json({
+          errorMessage: "We couldn't update the Todo Status"
+        });
+        throw err;
+      }
+      connection.query(
+        "Select * FROM todos WHERE id=?",
+        req.params.id,
+        (err, row) => {
+          res.status(200).json(row);
+        }
+      );
+    }
+  );
+});
+
 // Delete Todos from the Database
 app.delete("/deleteTodoFromDb/:id", (req, res) => {
   connection.query(
