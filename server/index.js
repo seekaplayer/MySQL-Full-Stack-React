@@ -49,8 +49,13 @@ app.post("/insertTodosIntoDb", (req, res) => {
       });
       throw err;
     }
-    res.status(200).json({ result });
-    console.log(result);
+    connection.query(
+      "SELECT * FROM todos WHERE id=?",
+      result.insertId,
+      (err, row) => {
+        res.status(200).json(row);
+      }
+    );
   });
 });
 

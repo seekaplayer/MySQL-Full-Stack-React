@@ -4,9 +4,19 @@ import TodoCard from "../TodoCard/TodoCard";
 import "./TodoList.css";
 const TodosList = () => {
   const [todoList, setTodoList] = useState([]);
-  const createTodoList = todo => {
-    setTodoList([...todoList, { id: 0, name: todo, status: 0 }]);
+
+  const createTodoList = async todo => {
+    const response = await fetch("http://localhost:3001/insertTodosIntoDb", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify({ name: todo.name, status: 0 })
+    });
+    const json = await response.json();
+    setTodoList([...todoList, ...json]);
   };
+
   useEffect(() => {
     const getTodos = async () => {
       const response = await fetch("http://localhost:3001/getTodosFromDb");
