@@ -1,6 +1,9 @@
 import React from "react";
 
 const TodoCardButtons = ({ todoItem }) => {
+  const deleteTodo = () => {
+    return <div></div>;
+  };
   return (
     <footer className="card-footer">
       {todoItem.status === 0 ? (
@@ -9,7 +12,9 @@ const TodoCardButtons = ({ todoItem }) => {
             <button className="button is-primary">Edit</button>
           </p>
           <p className="card-footer-item">
-            <button className="button is-danger">Delete</button>
+            <button onClick={deleteTodo} className="button is-danger">
+              Delete
+            </button>
           </p>
           <p className="card-footer-item">
             <button className="button is-success">Complete</button>
