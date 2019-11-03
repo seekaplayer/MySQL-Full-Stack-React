@@ -39,17 +39,30 @@ connection.connect(err => {
   );
 });
 
+// Insert todos into the database
+
+app.post("/insertTodosIntoDb", (req, res) => {
+  connection.query("INSERT INTO todos SET ?", req.body, (err, result) => {
+    if (err) {
+      res.status(500).json({
+        errorMessage: "We couldn't insert that Todo Item!"
+      });
+      throw err;
+    }
+    res.status(200).json({ result });
+    console.log(result);
+  });
+});
+
 // Get todos from the Database
 app.get("/getTodosFromDb", (req, res) => {
-  connection.query("SELECT * FROM `todos` ORDER BY id ASC", (err, result) => {
+  connection.query("SELECT * FROM todos ORDER BY id ASC", (err, result) => {
     if (err) {
       res.status(500).json({
         errorMessage: "Couldn't get data from the database"
       });
-      console.warn("There was an issue selecting your data");
       throw err;
     }
-    console.log(result);
     res.status(200).json({ result });
   });
 });

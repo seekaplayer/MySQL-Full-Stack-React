@@ -5,7 +5,7 @@ import "./TodoList.css";
 const TodosList = () => {
   const [todoList, setTodoList] = useState([]);
   const createTodoList = todo => {
-    setTodoList([...todoList, { id: 1, name: todo, status: false }]);
+    setTodoList([...todoList, { id: 0, name: todo, status: 0 }]);
   };
   useEffect(() => {
     const getTodos = async () => {
