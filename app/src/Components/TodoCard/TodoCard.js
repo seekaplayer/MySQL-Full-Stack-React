@@ -4,7 +4,8 @@ import TodoCardButtons from "./TodoCardButtons";
 const TodoCard = ({
   todoList,
   deleteTodoFromList,
-  updateTodoStatusFromList
+  updateTodoStatusFromList,
+  editTodoFromList
 }) => {
   return (
     <div className="columns is-multiline todoListTopSpacing">
@@ -19,6 +20,7 @@ const TodoCard = ({
               todoItem={todoItem}
               deleteTodoFromList={deleteTodoFromList}
               updateTodoStatusFromList={updateTodoStatusFromList}
+              editTodoFromList={editTodoFromList}
             />
           </div>
         </div>

@@ -3,7 +3,8 @@ import React from "react";
 const TodoCardButtons = ({
   todoItem,
   deleteTodoFromList,
-  updateTodoStatusFromList
+  updateTodoStatusFromList,
+  editTodoFromList
 }) => {
   const deleteTodo = () => {
     deleteTodoFromList(todoItem);
@@ -11,12 +12,17 @@ const TodoCardButtons = ({
   const updateTodoStatus = () => {
     updateTodoStatusFromList(todoItem);
   };
+  const editTodoItem = () => {
+    editTodoFromList(todoItem);
+  };
   return (
     <footer className="card-footer">
       {todoItem.status === 0 ? (
         <>
           <p className="card-footer-item">
-            <button className="button is-primary">Edit</button>
+            <button onClick={editTodoItem} className="button is-primary">
+              Edit
+            </button>
           </p>
           <p className="card-footer-item">
             <button onClick={deleteTodo} className="button is-danger">

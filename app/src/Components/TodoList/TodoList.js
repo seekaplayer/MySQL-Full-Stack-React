@@ -39,11 +39,12 @@ const TodosList = () => {
       }
     );
     const json = await response.json();
-
     setTodoList(
       todoList.map(todo => (todo.id === todoItem.id ? json[0] : todo))
     );
   };
+
+  const editTodoFromList = async todoItem => {};
 
   useEffect(() => {
     const getTodos = async () => {
@@ -61,6 +62,7 @@ const TodosList = () => {
         todoList={todoList}
         deleteTodoFromList={deleteTodoFromList}
         updateTodoStatusFromList={updateTodoStatusFromList}
+        editTodoFromList={editTodoFromList}
       />
     </div>
   );
