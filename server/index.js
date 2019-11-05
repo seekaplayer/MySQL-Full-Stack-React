@@ -95,7 +95,7 @@ app.put("/updateTodoStatus/:id", (req, res) => {
 app.put("/updateTodoItem/:id", (req, res) => {
   connection.query(
     "UPDATE todos SET name=? WHERE id=?",
-    [req.params.name, req.params.id],
+    [req.body.name, req.params.id],
     (err, result) => {
       if (err) {
         res.status(500).json({
