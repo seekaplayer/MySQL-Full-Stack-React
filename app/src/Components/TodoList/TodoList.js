@@ -43,8 +43,23 @@ const TodosList = () => {
       todoList.map(todo => (todo.id === todoItem.id ? json[0] : todo))
     );
   };
-
-  const editTodoFromList = async todoItem => {};
+  const editTodoListItem = async todoItem => {
+    const response = await fetch(
+      `http://localhost:3001/updateTodoItem/${todoItem.id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json"
+        },
+        body: JSON.stringify({ name: todoItem.name })
+      }
+    );
+    const json = await response.json();
+    console.log(todoItem);
+    setTodoList(
+      todoList.map(todo => (todo.id === todoItem.id ? json[0] : todo))
+    );
+  };
 
   useEffect(() => {
     const getTodos = async () => {
@@ -58,12 +73,22 @@ const TodosList = () => {
   return (
     <div>
       <AddTodoForm createTodoList={createTodoList} />
-      <TodoCard
-        todoList={todoList}
-        deleteTodoFromList={deleteTodoFromList}
-        updateTodoStatusFromList={updateTodoStatusFromList}
-        editTodoFromList={editTodoFromList}
-      />
+      <div className="columns is-multiline todoListTopSpacing">
+        {todoList.map((todoItem, key) => (
+          <div
+            key={key}
+            className="column is-4-desktop is-6-tablet is-12-mobile"
+          >
+            <TodoCard
+              todoList={todoList}
+              deleteTodoFromList={deleteTodoFromList}
+              updateTodoStatusFromList={updateTodoStatusFromList}
+              todoItem={todoItem}
+              editTodoListItem={editTodoListItem}
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

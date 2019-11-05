@@ -1,17 +1,26 @@
 import React, { useState } from "react";
 
-const AddTodoFrom = ({ createTodoList }) => {
-  const [todo, setTodo] = useState({ name: "" });
+const AddTodoFrom = ({
+  createTodoList,
+  todoItem = { name: "" },
+  isEdit,
+  editTodoListItem
+}) => {
+  const [todo, setTodo] = useState(todoItem);
 
   const onChange = event => {
     event.preventDefault();
-    setTodo({ name: event.target.value });
+    setTodo({ ...todo, name: event.target.value });
   };
 
   const onSubmit = event => {
     event.preventDefault();
-    createTodoList(todo);
-    setTodo({ name: "" });
+    if (isEdit) {
+      editTodoListItem(todo);
+    } else {
+      createTodoList(todo);
+      setTodo({ ...todo, name: "" });
+    }
   };
   return (
     <form onSubmit={onSubmit}>

@@ -4,7 +4,7 @@ const TodoCardButtons = ({
   todoItem,
   deleteTodoFromList,
   updateTodoStatusFromList,
-  editTodoFromList
+  editTodoButton
 }) => {
   const deleteTodo = () => {
     deleteTodoFromList(todoItem);
@@ -12,15 +12,15 @@ const TodoCardButtons = ({
   const updateTodoStatus = () => {
     updateTodoStatusFromList(todoItem);
   };
-  const editTodoItem = () => {
-    editTodoFromList(todoItem);
+  const enableEdit = () => {
+    editTodoButton();
   };
   return (
     <footer className="card-footer">
       {todoItem.status === 0 ? (
         <>
           <p className="card-footer-item">
-            <button onClick={editTodoItem} className="button is-primary">
+            <button onClick={enableEdit} className="button is-primary">
               Edit
             </button>
           </p>

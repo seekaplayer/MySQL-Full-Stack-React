@@ -1,30 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import TodoCardStatus from "./TodoStatus";
 import TodoCardButtons from "./TodoCardButtons";
+import AddTodoForm from "../AddTodoForm/AddTodoForm";
 const TodoCard = ({
-  todoList,
+  todoItem,
   deleteTodoFromList,
   updateTodoStatusFromList,
-  editTodoFromList
+  editTodoListItem
 }) => {
+  const [isEdit, setIsEdit] = useState(false);
+  const editTodoButton = () => {
+    setIsEdit(!isEdit);
+  };
+
   return (
-    <div className="columns is-multiline todoListTopSpacing">
-      {todoList.map((todoItem, key) => (
-        <div key={key} className="column is-4-desktop is-6-tablet is-12-mobile">
-          <div className="card">
-            <div className="card-content">
-              <p className="subtitle">{todoItem.name}</p>
-              <TodoCardStatus todoItem={todoItem} />
-            </div>
-            <TodoCardButtons
+    <div className="card">
+      <div className="card-content">
+        <p className="subtitle">
+          {isEdit ? (
+            <AddTodoForm
+              isEdit={isEdit}
               todoItem={todoItem}
-              deleteTodoFromList={deleteTodoFromList}
-              updateTodoStatusFromList={updateTodoStatusFromList}
-              editTodoFromList={editTodoFromList}
+              editTodoListItem={editTodoListItem}
             />
-          </div>
-        </div>
-      ))}
+          ) : (
+            todoItem.name
+          )}
+        </p>
+        <TodoCardStatus todoItem={todoItem} />
+      </div>
+      <TodoCardButtons
+        todoItem={todoItem}
+        deleteTodoFromList={deleteTodoFromList}
+        updateTodoStatusFromList={updateTodoStatusFromList}
+        editTodoButton={editTodoButton}
+      />
     </div>
   );
 };
