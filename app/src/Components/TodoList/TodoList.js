@@ -43,6 +43,7 @@ const TodosList = () => {
       todoList.map(todo => (todo.id === todoItem.id ? json[0] : todo))
     );
   };
+
   const editTodoListItem = async todoItem => {
     const response = await fetch(
       `http://localhost:3001/updateTodoItem/${todoItem.id}`,
@@ -55,7 +56,6 @@ const TodosList = () => {
       }
     );
     const json = await response.json();
-    console.log(todoItem);
     setTodoList(
       todoList.map(todo => (todo.id === todoItem.id ? json[0] : todo))
     );

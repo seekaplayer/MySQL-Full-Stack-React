@@ -4,6 +4,7 @@ const AddTodoFrom = ({
   createTodoList,
   todoItem = { name: "" },
   isEdit,
+  doneEditing,
   editTodoListItem
 }) => {
   const [todo, setTodo] = useState(todoItem);
@@ -17,6 +18,7 @@ const AddTodoFrom = ({
     event.preventDefault();
     if (isEdit) {
       editTodoListItem(todo);
+      doneEditing();
     } else {
       createTodoList(todo);
       setTodo({ ...todo, name: "" });

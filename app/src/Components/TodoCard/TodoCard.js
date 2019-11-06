@@ -12,21 +12,24 @@ const TodoCard = ({
   const editTodoButton = () => {
     setIsEdit(!isEdit);
   };
-
+  const doneEditing = () => {
+    setIsEdit(false);
+  };
   return (
     <div className="card">
       <div className="card-content">
-        <p className="subtitle">
+        <span className="subtitle">
           {isEdit ? (
             <AddTodoForm
               isEdit={isEdit}
+              doneEditing={doneEditing}
               todoItem={todoItem}
               editTodoListItem={editTodoListItem}
             />
           ) : (
             todoItem.name
           )}
-        </p>
+        </span>
         <TodoCardStatus todoItem={todoItem} />
       </div>
       <TodoCardButtons
