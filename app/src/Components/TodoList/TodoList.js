@@ -4,9 +4,10 @@ import TodoCard from "../TodoCard/TodoCard";
 import "./TodoList.css";
 const TodosList = () => {
   const [todoList, setTodoList] = useState([]);
+  const serverConnectionURL = "http://localhost:3001";
 
   const createTodoList = async todo => {
-    const response = await fetch("http://localhost:3001/insertTodosIntoDb", {
+    const response = await fetch(`${serverConnectionURL}/insertTodosIntoDb`, {
       method: "POST",
       headers: {
         "content-type": "application/json"
@@ -19,7 +20,7 @@ const TodosList = () => {
 
   const deleteTodoFromList = async todoItem => {
     const response = await fetch(
-      `http://localhost:3001/deleteTodoFromDb/${todoItem.id}`,
+      `${serverConnectionURL}/deleteTodoFromDb/${todoItem.id}`,
       {
         method: "DELETE"
       }
@@ -30,7 +31,7 @@ const TodosList = () => {
 
   const updateTodoStatusFromList = async todoItem => {
     const response = await fetch(
-      `http://localhost:3001/updateTodoStatus/${todoItem.id}`,
+      `${serverConnectionURL}/updateTodoStatus/${todoItem.id}`,
       {
         method: "PUT",
         headers: {
@@ -46,7 +47,7 @@ const TodosList = () => {
 
   const editTodoListItem = async todoItem => {
     const response = await fetch(
-      `http://localhost:3001/updateTodoItem/${todoItem.id}`,
+      `${serverConnectionURL}/updateTodoItem/${todoItem.id}`,
       {
         method: "PUT",
         headers: {
@@ -63,7 +64,7 @@ const TodosList = () => {
 
   useEffect(() => {
     const getTodos = async () => {
-      const response = await fetch("http://localhost:3001/getTodosFromDb");
+      const response = await fetch(`${serverConnectionURL}/getTodosFromDb`);
       const json = await response.json();
       setTodoList(json.result);
     };
